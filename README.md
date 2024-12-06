@@ -29,6 +29,7 @@ Create a HTML file to implement form based input and output.
 Publish the website in the given URL.
 
 # PROGRAM :
+```
 <html>
 <head>
 <meta charset='utf-8'>
@@ -97,6 +98,7 @@ padding-top: 20px;
         </div>
         </div>
         </body>
+```
         
 # SERVER SIDE PROCESSING:
 ![alt text](<Screenshot 2024-12-06 203943.png>)
