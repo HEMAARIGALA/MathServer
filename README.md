@@ -30,12 +30,9 @@ Publish the website in the given URL.
 
 # PROGRAM :
 ```
-<<<<<<< HEAD
 math.html
 
 {% load static %}
-=======
->>>>>>> 5e779138e675411adee08bfa7464a0a15ae61346
 <html>
 <head>
     <title>math</title>
@@ -90,7 +87,6 @@ form{
         <label for="RESISTANCE"><b>RESISTANCE:</b></label>
         <input type="text" name="resistance" id="RESISTANCE" placeholder="Enter the Value" value="{{r}}">
     </div>
-<<<<<<< HEAD
     <br>
     <input type="submit" value="CALCULATE">
     <br>
@@ -98,20 +94,6 @@ form{
     <div class="power">
         <label for="POWER"><b>POWER:</b></label>
         <input type="text" name="POWER" id="POWER" placeholder="Answer" value="{{power}}">
-=======
-    <div class="formelt">
-        <input type="submit" value="Calculate"></input><br/>
-        </div>
-        <div class="formelt">
-        Power : <input type="text" name="power" value="{{power}}"></input>(in W)<br/>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
-        </body>
-```
->>>>>>> 5e779138e675411adee08bfa7464a0a15ae61346
         
     </div>
 </form>
@@ -150,8 +132,6 @@ urlpatterns = [
     path('powerlamp/',views.powerlamp,name="powerlamp"),
     path('',views.powerlamp,name="powerlamproot")
 ]
-
-
 ```
 
 # SERVER SIDE PROCESSING:
