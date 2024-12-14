@@ -1,31 +1,19 @@
 from django.shortcuts import render
-
-def power_calculator(request):
-    power = None 
-    intensity = None
-    resistance = None 
-
-    if request.method == 'POST':
+def powerlamp(request): 
+    context={} 
+    context['power']="0" 
+    context['i']="0" 
+    context['r']="0" 
+    if request.method=='POST': 
         print("POST method is used")
-        
-        intensity = request.POST.get('intensity','0')
-        resistance = request.POST.get('resistance','0')
-
-        
-        if intensity and resistance:
-            try:
-            
-                I = float(intensity)
-                R = float(resistance)
-                power = I**2 * R
-                print('request=',request)
-                print('intensity=',I)
-                print('resistance=',R)
-                print('power=',power)  
-
-            except ValueError:
-                power = "Invalid input. Please enter numerical values."
-
-    
-    return render(request, 'mathapp/math.html', {'power': power, 'intensity': intensity, 'resistance': resistance})
-
+        i=request.POST.get('intensity','0')
+        r=request.POST.get('resistance','0')
+        print('request=',request) 
+        print('intensity=',i) 
+        print('resistance=',r) 
+        power=(int(i) ** 2 ) * int(r) 
+        context['power']=power
+        context['i']=i
+        context['r']=r 
+        print('Power=',power) 
+    return render(request,'mathapp/math.html',context)

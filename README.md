@@ -1,5 +1,5 @@
 # Ex.05 Design a Website for Server Side Processing
-# Date:
+# Date: 05.12.2024
 # AIM:
 To design a website to calculate the power of a lamp filament in an incandescent bulb in the server side.
 
@@ -29,78 +29,116 @@ Create a HTML file to implement form based input and output.
 Publish the website in the given URL.
 
 # PROGRAM :
+```
+math.html
+
+{% load static %}
 <html>
 <head>
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<title>Power of a Lamp Filament</title>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<style type="text/css">
-body 
-{
-background-color:green;
+    <title>math</title>
+    <style>
+        
+h1{
+    border: 2px solid black;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    position: fixed;
+    top: 200px;
+    right: 500px;
+    font-size: xx-large;
+    font-weight: bolder;
+    font-variant: small-caps;
+    background: linear-gradient(to bottom,red,yellow,red);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: grey;
 }
-.edge {
-width: 1440px;
-margin-left: auto;
-margin-right: auto;
-padding-top: 250px;
-padding-left: 300px;
+form{
+    border: 2px solid black;
+    background-color: rgba(128, 128, 128, 0.064) ;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 425px;
+    position: fixed;
+    top: 300px;
+    left: 527px;
+    
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: left;
+    
 }
-.container
-{
-    background-color: cyan;
-}
-.box {
-display:block;
-border: Thick dashed rgb(139, 144, 112);
-width: 500px;
-min-height: 300px;
-font-size: 20px;
-background-color:red(26, 67%, 46%);
-}
-.formelt{
-color:blue(85, 13, 229, 0.934);
-text-align: center;
-margin-top: 7px;
-margin-bottom: 6px;
-}
-h1
-{
-color:rgb(0, 255, 60);
-text-align: center;
-padding-top: 20px;
-}
-</style>
+
+    </style>
 </head>
 <body>
-    <div class="edge">
-    <div class="box">
-        <div class="container">
-    <h1>Power of a Light Filament</h1>
-    <form method="POST">
-    {% csrf_token %}
-    <div class="formelt">
-    intensity : <input type="text" name="intensity" value="{{i}}"></input>(in Wm<sup>-2</sup>)<br/>
+    <h1 align="center" > power of a lamp filament</h1>
+    <form align="center" method="POST">
+    {%csrf_token%}
+     
+    <div class="power">
+
+        <label for="INTENSITY"><b>INTENSITY:</b></label>
+        <input type="text" name="intensity" id="INTENSITY" placeholder="Enter the Value" value="{{i}}">
     </div>
-    <div class="formelt">
-    resistance : <input type="text" name="resistance" value="{{r}}"></input>(in ohm)<br/>
+    <br>
+    <div class="power">
+        <label for="RESISTANCE"><b>RESISTANCE:</b></label>
+        <input type="text" name="resistance" id="RESISTANCE" placeholder="Enter the Value" value="{{r}}">
     </div>
-    <div class="formelt">
-        <input type="submit" value="Calculate"></input><br/>
-        </div>
-        <div class="formelt">
-        Power : <input type="text" name="power" value="{{power}}"></input>(in W)<br/>
-        </div>
-        </form>
-        </div>
-        </div>
-        </div>
-        </body>
+    <br>
+    <input type="submit" value="CALCULATE">
+    <br>
+    <br>
+    <div class="power">
+        <label for="POWER"><b>POWER:</b></label>
+        <input type="text" name="POWER" id="POWER" placeholder="Answer" value="{{power}}">
         
+    </div>
+</form>
+</body>
+</html>
+
+views.py
+
+from django.shortcuts import render
+def powerlamp(request): 
+    context={} 
+    context['power']="0" 
+    context['i']="0" 
+    context['r']="0" 
+    if request.method=='POST': 
+        print("POST method is used")
+        i=request.POST.get('intensity','0')
+        r=request.POST.get('resistance','0')
+        print('request=',request) 
+        print('intensity=',i) 
+        print('resistance=',r) 
+        power=(int(i) ** 2 ) * int(r) 
+        context['power']=power
+        context['i']=i
+        context['r']=r 
+        print('Power=',power) 
+    return render(request,'mathapp/math.html',context)
+
+urls.py
+
+from django.contrib import admin 
+from django.urls import path 
+from mathapp import views 
+urlpatterns = [ 
+    path('admin/', admin.site.urls), 
+    path('powerlamp/',views.powerlamp,name="powerlamp"),
+    path('',views.powerlamp,name="powerlamproot")
+]
+
+
+```
+
 # SERVER SIDE PROCESSING:
-![alt text](<Screenshot 2024-12-06 203943.png>)
+![alt text](ss.jpg)
 # HOMEPAGE:
-![alt text](<Screenshot 2024-12-06 094658.png>)
+![alt text](<Screenshot (46).png>)
 # RESULT:
 The program for performing server side processing is completed successfully.
